@@ -96,9 +96,8 @@ export default function App() {
 
         {message && <p className="message">{message}</p>}
        
-        <hr />
-         <Login />
       </div>
+      <Login />
     </main>
   );
 }
