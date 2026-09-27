@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Amplify } from 'aws-amplify';
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
 import outputs from '../amplify_outputs.json';
-
+import Login from "./Login";
 Amplify.configure(outputs);
 
 export default function App() {
@@ -118,7 +118,9 @@ export default function App() {
         )}
 
         {message && <p className="message">{message}</p>}
+       
       </div>
+      <Login />
     </main>
   );
 }
