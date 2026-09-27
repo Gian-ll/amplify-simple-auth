@@ -6,8 +6,11 @@ import outputs from '../amplify_outputs.json';
 Amplify.configure(outputs);
 
 export default function App() {
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const [code, setCode] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [message, setMessage] = useState('');
@@ -22,6 +25,8 @@ export default function App() {
         options: {
           userAttributes: {
             email: email,
+            given_name: nombre,
+            family_name: apellido,
           },
         },
       });
@@ -30,7 +35,7 @@ export default function App() {
       setMessage('Se envió un código a tu correo.');
     } catch (error) {
       console.error(error);
-      setMessage('No se pudo crear la cuenta.');
+      setMessage('No se pudo crear la cuenta D:');
     }
   }
 
@@ -58,6 +63,24 @@ export default function App() {
 
         {!showConfirmation ? (
           <form onSubmit={handleRegister}>
+            <label>Nombre</label>
+            <input
+              type="text"
+              placeholder="Nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              required
+            />
+
+            <label>Apellido</label>
+            <input
+              type="text"
+              placeholder="Apellido"
+              value={apellido}
+              onChange={(e) => setApellido(e.target.value)}
+              required
+            />
+
             <label>Correo electrónico</label>
             <input
               type="email"
