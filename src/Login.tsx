@@ -14,7 +14,7 @@ interface SignInForm extends HTMLFormElement {
 
 export default function Login() {
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [haIniciadoSesion, sethaIniciadoSesion] = useState(false);
+  const [haIniciadoSesion, setHaIniciadoSesion] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
 
@@ -35,7 +35,7 @@ export default function Login() {
 
       if (nextStep.signInStep === "DONE") {
         console.log("¡Inicio de sesión exitoso!");
-        sethaIniciadoSesion(true);
+        setHaIniciadoSesion(true);
       }
 
       if (nextStep.signInStep === "CONFIRM_SIGN_UP") {
@@ -61,7 +61,7 @@ export default function Login() {
     }
   }
   if (haIniciadoSesion) {
-   return <Home/>;
+   return <Home alCerrarSesion={() => setHaIniciadoSesion(false)} />;
   }
   return (
     <div className="register-card">

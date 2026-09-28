@@ -1,11 +1,16 @@
 import { signOut } from "aws-amplify/auth";
 
-export default function Home() {
+interface HomeProps {
+  alCerrarSesion: () => void;
+}
+
+export default function Home({ alCerrarSesion }: HomeProps) {
 
   async function handleSignOut() {
     try {
       await signOut();
       console.log("Sesión cerrada");
+      alCerrarSesion();
     } catch (error) {
       console.error(error);
     }
