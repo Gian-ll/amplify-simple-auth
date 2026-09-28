@@ -1,10 +1,11 @@
 import { signOut } from "aws-amplify/auth";
 
 interface HomeProps {
+  userId: string;
   alCerrarSesion: () => void;
 }
 
-export default function Home({ alCerrarSesion }: HomeProps) {
+export default function Home({ userId, alCerrarSesion }: HomeProps) {
 
   async function handleSignOut() {
     try {
@@ -18,7 +19,7 @@ export default function Home({ alCerrarSesion }: HomeProps) {
 
   return (
     <main>
-      <h1>Hola, usuario</h1>
+      <h1>Hola, {userId}</h1>
 
       <button type="button" onClick={handleSignOut}>
         Cerrar sesión

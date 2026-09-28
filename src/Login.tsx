@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import Home from "./Home";
-import { signIn, confirmSignUp } from "aws-amplify/auth";
+import { signIn, confirmSignUp, getCurrentUser } from "aws-amplify/auth";
 
 interface SignInFormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -17,6 +17,7 @@ export default function Login() {
   const [haIniciadoSesion, setHaIniciadoSesion] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
+  const [userId, setUserId] = useState("");
 
   async function handleSubmit(event: FormEvent<SignInForm>) {
     event.preventDefault();
@@ -34,7 +35,9 @@ export default function Login() {
       console.log("Siguiente paso:", nextStep);
 
       if (nextStep.signInStep === "DONE") {
+        const { userId } = await getCurrentUser();
         console.log("¡Inicio de sesión exitoso!");
+        setUserId(userId);
         setHaIniciadoSesion(true);
       }
 
@@ -61,7 +64,12 @@ export default function Login() {
     }
   }
   if (haIniciadoSesion) {
-   return <Home alCerrarSesion={() => setHaIniciadoSesion(false)} />;
+    return ( 
+      <Home 
+        userId={userId}
+        alCerrarSesion={() => setHaIniciadoSesion(false)} 
+      />)
+    ;
   }
   return (
     <div className="register-card">
