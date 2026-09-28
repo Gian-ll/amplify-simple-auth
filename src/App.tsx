@@ -57,53 +57,62 @@ export default function App() {
 
   return (
     <main className="container">
-      <div className="register-card">
+      <div className="formulario-card">
         <h1>Crear una cuenta</h1>
-        <p>Continuar con correo</p>
+        <button type="button" className="google-metodo">
+          Continuar con Google
+        </button>
+
+        <div className="separador">
+          <span></span>
+        </div>
+
+        <p>Continuar con Correo</p>
 
         {!showConfirmation ? (
           <form onSubmit={handleRegister}>
-            <label>Nombre</label>
-            <input
+
+            <div className="nombre-apellido">
+              <input
               type="text"
               placeholder="Nombre"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
               required
-            />
+              />
 
-            <label>Apellido</label>
-            <input
+              <input
               type="text"
               placeholder="Apellido"
               value={apellido}
               onChange={(e) => setApellido(e.target.value)}
               required
-            />
+              />
+            </div>
 
-            <label>Correo electrónico</label>
             <input
               type="email"
               placeholder="Correo"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              autoComplete='off'
               required
             />
 
-            <label>Contraseña</label>
             <input
               type="password"
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="new-password"
               required
             />
 
-            <button type="submit"> Crear cuenta </button>
+            <button type="submit" className="boton"> CREAR CUENTA </button>
           </form>
         ) : (
           <form onSubmit={handleConfirm}>
-            <label>Código de confirmación</label>
+            <label>Verificar Correo</label>
 
             <input
               type="text"
@@ -113,11 +122,29 @@ export default function App() {
               required
             />
 
-            <button type="submit"> Confirmar cuenta </button>
+            <button type="submit" className="boton"> CONFIRMAR </button>
           </form>
         )}
 
         {message && <p className="message">{message}</p>}
+      </div>
+
+      <div className='Terminos-Privacidad'>
+        <a
+        href="https://helvet.mx/legal/terminos"
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+          Términos
+        </a>
+        <span> y </span>
+        <a
+        href="https://helvet.mx/legal/privacidad"
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+          Avisos de privacidad
+        </a>
       </div>
     </main>
   );
