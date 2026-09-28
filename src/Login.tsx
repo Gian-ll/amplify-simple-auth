@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-
+import Home from "./Home";
 import { signIn, confirmSignUp } from "aws-amplify/auth";
 
 interface SignInFormElements extends HTMLFormControlsCollection {
@@ -14,6 +14,7 @@ interface SignInForm extends HTMLFormElement {
 
 export default function Login() {
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [haIniciadoSesion, sethaIniciadoSesion] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
 
@@ -34,6 +35,7 @@ export default function Login() {
 
       if (nextStep.signInStep === "DONE") {
         console.log("¡Inicio de sesión exitoso!");
+        sethaIniciadoSesion(true);
       }
 
       if (nextStep.signInStep === "CONFIRM_SIGN_UP") {
@@ -58,7 +60,9 @@ export default function Login() {
       console.error("Error al confirmar cuenta:", error);
     }
   }
-
+  if (haIniciadoSesion) {
+   return <Home/>;
+  }
   return (
     <div className="register-card">
       {!showConfirmation ? (
