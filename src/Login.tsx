@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import Home from "./Home";
 import { signIn, confirmSignUp, getCurrentUser } from "aws-amplify/auth";
@@ -12,12 +12,29 @@ interface SignInForm extends HTMLFormElement {
   readonly elements: SignInFormElements;
 }
 
-export default function Login() {
+interface LoginProps {
+  irARegistro: () => void;
+}
+
+export default function Login({ irARegistro }: LoginProps) {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [haIniciadoSesion, setHaIniciadoSesion] = useState(false);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+  async function comprobarSesion() {
+    try {
+      const { userId } = await getCurrentUser();
+      setUserId(userId);
+      setHaIniciadoSesion(true);
+    } catch (error) {
+      console.log("No hay una sesión activa");
+    }
+  }
+  comprobarSesion();
+  }, []);
 
   async function handleSubmit(event: FormEvent<SignInForm>) {
     event.preventDefault();
@@ -105,6 +122,12 @@ export default function Login() {
             <button type="submit">
               INICIAR SESIÓN
             </button>
+            
+            <button type="button"
+            className="switch-button"
+            onClick={irARegistro}
+            > Crear cuenta </button>
+
           </form>
         </>
       ) : (

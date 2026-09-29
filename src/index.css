@@ -15,6 +15,15 @@ body {
   background: #f5f5f5;
 }
 
+.switch-button {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
