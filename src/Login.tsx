@@ -89,7 +89,7 @@ export default function Login({ irARegistro }: LoginProps) {
     ;
   }
   return (
-    <div className="register-card">
+    <div className="formulario-card">
       {!showConfirmation ? (
         <>
           <h1>Iniciar Sesión</h1>
@@ -119,9 +119,7 @@ export default function Login({ irARegistro }: LoginProps) {
               required
             />
 
-            <button type="submit">
-              INICIAR SESIÓN
-            </button>
+            <button type="submit" className="boton"> INICIAR SESIÓN </button>
             
             <button type="button"
             className="switch-button"
@@ -151,9 +149,7 @@ export default function Login({ irARegistro }: LoginProps) {
               required
             />
 
-            <button type="submit">
-              Confirmar cuenta
-            </button>
+            <button type="submit" className="boton"> Confirmar cuenta </button>
           </form>
         </>
       )}
