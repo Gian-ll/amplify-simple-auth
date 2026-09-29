@@ -53,7 +53,7 @@ export default function Register({ irALogin }: RegisterProps)  {
   }
 
   return (
-    <div className="register-card">
+    <div className="formulario-card">
       <h1>Crear una cuenta</h1>
       <p>Continuar con correo</p>
 
@@ -95,7 +95,7 @@ export default function Register({ irALogin }: RegisterProps)  {
             required
           />
 
-          <button type="submit"> Crear cuenta </button>
+          <button type="submit" className="boton"> Crear cuenta </button>
 
           <button type="button" 
           className="switch-button" onClick={irALogin}
@@ -114,7 +114,7 @@ export default function Register({ irALogin }: RegisterProps)  {
             required
           />
 
-          <button type="submit"> Confirmar cuenta </button>
+          <button type="submit" className="boton"> Confirmar cuenta </button>
         </form>
       )}
 
