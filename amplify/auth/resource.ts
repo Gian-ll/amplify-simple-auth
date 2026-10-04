@@ -1,4 +1,4 @@
-import { defineAuth } from '@aws-amplify/backend';
+import { defineAuth, secret } from '@aws-amplify/backend';
 
 export const auth = defineAuth({
   loginWith: {
@@ -8,6 +8,29 @@ export const auth = defineAuth({
       verificationEmailBody: (createCode) => `Utilice este código para confirmar su cuenta: ${createCode()}`,
     }
   },
+   externalProviders: {
+      google: {
+        clientId: secret('GOOGLE_CLIENT_ID'),
+        clientSecret: secret('GOOGLE_CLIENT_SECRET'),
+        scopes: ['openid', 'email', 'profile'],
+        attributeMapping: {
+          email: 'email',
+          emailVerified: 'email_verified',
+          givenName: 'given_name',   
+          familyName: 'family_name',
+        },
+      },
+      callbackUrls: [
+        'http://localhost:5173/',
+        'https://main.d1ds15vfcosnr1.amplifyapp.com/'
+      ],
+      logoutUrls: [
+        'http://localhost:5173/',
+        'https://main.d1ds15vfcosnr1.amplifyapp.com/'
+      ],
+    },
+  },
+  
   userAttributes: {
     // especificar nombre de pila "given_name" como atributo
     givenName: {
@@ -20,4 +43,4 @@ export const auth = defineAuth({
       required: false,
     },
   },
-})
+});
