@@ -6,9 +6,8 @@ export const auth = defineAuth({
       verificationEmailStyle: "CODE",
       verificationEmailSubject: "¡Bienvenido a mi FARA Collections!",
       verificationEmailBody: (createCode) => `Utilice este código para confirmar su cuenta: ${createCode()}`,
-    }
-  },
-   externalProviders: {
+    },
+    externalProviders: {
       google: {
         clientId: secret('GOOGLE_CLIENT_ID'),
         clientSecret: secret('GOOGLE_CLIENT_SECRET'),
@@ -21,16 +20,13 @@ export const auth = defineAuth({
         },
       },
       callbackUrls: [
-        'http://localhost:5173/',
-        'https://main.d1ds15vfcosnr1.amplifyapp.com/'
+        'https://dev.d1aakqkfpgrp6u.amplifyapp.com/',
       ],
       logoutUrls: [
-        'http://localhost:5173/',
-        'https://main.d1ds15vfcosnr1.amplifyapp.com/'
+        'https://dev.d1aakqkfpgrp6u.amplifyapp.com/',
       ],
     },
   },
-  
   userAttributes: {
     // especificar nombre de pila "given_name" como atributo
     givenName: {
